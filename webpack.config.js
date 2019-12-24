@@ -1,6 +1,7 @@
 // webpack.config.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 // We'll refer to our source and dist paths frequently, so let's store them here
 const PATH_SOURCE = path.join(__dirname, "./src");
@@ -22,6 +23,31 @@ module.exports = env => {
     // `process.env.NODE_ENV` according to the environment we specify.
     // https://webpack.js.org/configuration/mode
     mode: environment,
+
+    // Configuration options for Webpack DevServer, an Express web server that
+    // aids with development. It provides live reloading out of the box and can
+    // be configured to do a lot more.
+    devServer: {
+      // The dev server will serve content from this directory.
+      contentBase: PATH_DIST,
+
+      // Specify a host. (Defaults to 'localhost'.)
+      host: 'localhost',
+
+      // Specify a port number on which to listen for requests.
+      port: 8080,
+
+      // When using the HTML5 History API (you'll probably do this with React
+      // later), index.html should be served in place of 404 responses.
+      historyApiFallback: true,
+
+      // Show a full-screen overlay in the browser when there are compiler
+      // errors or warnings.
+      overlay: {
+        errors: true,
+        warnings: true,
+      },
+    },
 
     // The point or points to enter the application. This is where Webpack will
     // start. We generally have one entry point per HTML page. For single-page
@@ -83,7 +109,12 @@ module.exports = env => {
       // https://github.com/jantimon/html-webpack-plugin
       new HtmlWebpackPlugin({
         template: path.join(PATH_SOURCE, "./index.html")
-      })
+      }),
+
+      // This plugin will delete all files inside `output.path` (the dist directory),
+      // but the directory itself will be kept.
+      // https://github.com/johnagan/clean-webpack-plugin
+      new CleanWebpackPlugin()
     ]
   };
 };
