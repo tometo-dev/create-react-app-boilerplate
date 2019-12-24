@@ -2,9 +2,14 @@
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7"
+    "@babel/preset-env": "^7.7.7",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
     "core-js": "^3.6.0"
+  },
+  "scripts": {
+    "dev": "webpack --config webpack.config.js"
   }
 }
