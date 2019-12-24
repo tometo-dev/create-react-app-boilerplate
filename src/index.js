@@ -1,7 +1,9 @@
-import sum from "./sum"
+import React from "react";
+import ReactDOM from "react-dom";
 
-console.log(sum(2,4))
+function Root() {
+  return <h1>Hello, world.</h1>;
+}
 
-
-// const greet = name => console.log(`Hello, ${name}`)
-// greet("Jon Snow")
+// Render the Root element into the DOM
+ReactDOM.render(<Root />, document.getElementById("root"));

@@ -32,7 +32,7 @@ module.exports = env => {
       contentBase: PATH_DIST,
 
       // Specify a host. (Defaults to 'localhost'.)
-      host: 'localhost',
+      host: "localhost",
 
       // Specify a port number on which to listen for requests.
       port: 8080,
@@ -45,8 +45,8 @@ module.exports = env => {
       // errors or warnings.
       overlay: {
         errors: true,
-        warnings: true,
-      },
+        warnings: true
+      }
     },
 
     // The point or points to enter the application. This is where Webpack will
@@ -96,7 +96,12 @@ module.exports = env => {
                     // is no need to do it here.)
                     // targets: "",
                   }
-                ]
+                ],
+
+                // The react preset includes several plugins that are required to write
+                // a React app. For example, it transforms JSX:
+                // <div> -> React.createElement('div')
+                "@babel/preset-react"
               ]
             }
           }
